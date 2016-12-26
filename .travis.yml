@@ -1,7 +1,9 @@
 language: erlang
 
 before_install:
-  - sudo apt-get install -y debootstrap qemu-user-static
+  - sudo apt-get install -y qemu-user-static
+  - wget http://ftp.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.87_all.deb
+  - sudo dpkg --force-all -i debootstrap_1.0.87_all.deb
 
 script:
   - "sudo bash -ex lepidopter-debootstrap-rootfs_build.sh"
