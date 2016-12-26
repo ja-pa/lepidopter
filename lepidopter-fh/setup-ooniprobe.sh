@@ -4,6 +4,7 @@ set -ex
 TOR_DEB_REPO="http://deb.torproject.org/torproject.org"
 TOR_DEB_REPO_SRC_LIST="/etc/apt/sources.list.d/tor.list"
 TOR_REPO_GPG="A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89"
+DEB_RELEASE="jessie"
 
 # Add Torproject Debian repository
 apt-key adv --keyserver hkp://pool.sks-keyservers.net --recv-keys ${TOR_REPO_GPG}
