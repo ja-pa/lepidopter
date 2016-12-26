@@ -1,7 +1,7 @@
 language: erlang
 
 before_install:
-  - sudo apt-get install -y vmdebootstrap debootstrap qemu-user-static
+  - sudo apt-get install -y debootstrap qemu-user-static
 
 script:
   - "bash -ex lepidopter-debootstrap-rootfs_build.sh"
