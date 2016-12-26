@@ -81,19 +81,19 @@ mkdir -p ${ROOTDIR}/var/log/ooni/
 # Rsync Directory/file hieratchy to image
 rsync -avp lepidopter-fh/ ${ROOTDIR}/
 
+set +e #disable exit on error
 # Install ooniprobe via setup script
 chroot ${ROOTDIR} /setup-ooniprobe.sh
 rm ${ROOTDIR}/setup-ooniprobe.sh
+set -e
 
 # OS configure script
 chroot ${ROOTDIR} /configure.sh
 rm ${ROOTDIR}/configure.sh
 
-set +e #disable exit on error
 # Execute cleanup script
 chroot ${ROOTDIR} /cleanup.sh
 rm ${ROOTDIR}/cleanup.sh
-set -e
 
 # Remove SSH host keys and add regenerate_ssh_host_keys SYSV script
 chroot ${ROOTDIR} /remove_ssh_host_keys.sh
