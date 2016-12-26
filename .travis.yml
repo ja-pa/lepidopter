@@ -1,0 +1,9 @@
+language: erlang
+
+env:
+  - ARCH=x64
+  - ARCH=arm
+
+script:
+  - "bash -ex lepidopter-debootstrap-rootfs_build.sh"
+
