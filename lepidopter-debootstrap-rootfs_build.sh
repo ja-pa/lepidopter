@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+set -xe
 
 GIT_BUILD="$(git describe --tags)"
 echo "LEPIDOPTER_BUILD=\"${GIT_BUILD}\"" > lepidopter-fh/etc/default/lepidopter
@@ -89,9 +89,11 @@ rm ${ROOTDIR}/setup-ooniprobe.sh
 chroot ${ROOTDIR} /configure.sh
 rm ${ROOTDIR}/configure.sh
 
+set +e #disable exit on error
 # Execute cleanup script
 chroot ${ROOTDIR} /cleanup.sh
 rm ${ROOTDIR}/cleanup.sh
+set -e
 
 # Remove SSH host keys and add regenerate_ssh_host_keys SYSV script
 chroot ${ROOTDIR} /remove_ssh_host_keys.sh
