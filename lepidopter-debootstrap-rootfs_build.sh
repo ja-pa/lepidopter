@@ -112,5 +112,8 @@ rm ${ROOTDIR}/etc/resolv.conf
 cd ${ROOTDIR}/..
 tar -cvpzf ${SCRIPTDIR}/images/lepidopter-${LEPIDOPTER_BUILD}-${ARCH}.tar.gz  --one-file-system .
 
+#filesize
+ls -h ${SCRIPTDIR}/images/lepidopter-${LEPIDOPTER_BUILD}-${ARCH}.tar.gz
+
 echo "Customize script finished successfully."
 exit 0
