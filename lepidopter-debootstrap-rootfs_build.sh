@@ -85,7 +85,6 @@ set +e #disable exit on error
 # Install ooniprobe via setup script
 chroot ${ROOTDIR} /setup-ooniprobe.sh
 rm ${ROOTDIR}/setup-ooniprobe.sh
-set -e
 
 # OS configure script
 chroot ${ROOTDIR} /configure.sh
