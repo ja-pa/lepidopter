@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/ja-pa/lepidopter.svg?branch=master)](https://travis-ci.org/ja-pa/lepidopter)
 # Lepidopter - OONI powered Raspberry Pi image
 
 ## Description
