@@ -6,6 +6,7 @@ before_install:
 script:
   - sudo bash lepidopter-debootstrap-rootfs_build.sh
   - ls -lh images/
+  - sudo chown travis:travis $TRAVIS_BUILD_DIR/images/*.tar.gz
 deploy:
   provider: releases
   skip_cleanup: true
