@@ -65,6 +65,9 @@ EOT
 # Update
 chroot ${ROOTDIR} /usr/bin/apt-get update
 
+# Create user
+chroot ${ROOTDIR} /usr/sbin/adduser --disabled-password --gecos "" lepidopter
+
 # Install packages
 chroot ${ROOTDIR} /usr/bin/apt-get install -y sudo netbase ntp less openssh-server screen git-core binutils ca-certificates wget curl haveged lsb-release tcpdump localepurge fake-hwclock crda 
 
