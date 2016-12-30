@@ -108,6 +108,9 @@ chroot ${ROOTDIR} ln -s /var/run/motd /etc/motd
 # Add (optional) pluggable transport support in tor config
 cat conf/tor-pt.conf >> ${ROOTDIR}/etc/tor/torrc
 
+# Change tor dir owner
+chroot ${ROOTDIR} chown root:root /opt/ooni/tor_data_dir
+
 # Remove unnecessary files
 rm ${ROOTDIR}/usr/bin/qemu-arm-static
 rm ${ROOTDIR}/etc/resolv.conf
