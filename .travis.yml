@@ -4,7 +4,8 @@ before_install:
   - wget http://ftp.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.87_all.deb
   - sudo dpkg --force-all -i debootstrap_1.0.87_all.deb
 script:
-  - sudo bash lepidopter-debootstrap-rootfs_build.sh
+  - sudo bash lepidopter-debootstrap-rootfs_build.sh armhf
+  - sudo bash lepidopter-debootstrap-rootfs_build.sh powerpc
   - ls -lh images/
   - sudo chown travis:travis $TRAVIS_BUILD_DIR/images/*.tar.gz
 deploy:

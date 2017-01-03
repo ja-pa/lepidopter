@@ -15,7 +15,16 @@ export UPDATE_SELF=0 SKIP_BACKUP=1 SKIP_WARNING=1
 
 ROOTDIR=$(mktemp -d)/rootfs
 SCRIPTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ARCH=armhf
+ARCH=$1
+
+if [ "$ARCH" == "powerpc" ]; then
+	QEMU_STATIC="qemu-ppc-static"
+elif [ "$ARCH" == "armhf" ]; then
+	QEMU_STATIC="qemu-arm-static"
+else
+	echo "Error! Unknown CPU arch. !"
+	exit -1
+fi
 
 # Add an apt repository with apt preferences
 set_apt_sources() {
@@ -37,8 +46,9 @@ EOF
 }
 
 # debootstrap first stage
-debootstrap --arch=armhf --foreign ${DEB_RELEASE} ${ROOTDIR}
-cp /usr/bin/qemu-arm-static ${ROOTDIR}/usr/bin/
+debootstrap --arch=${ARCH} --foreign ${DEB_RELEASE} ${ROOTDIR}
+
+cp /usr/bin/${QEMU_STATIC} ${ROOTDIR}/usr/bin
 cp /etc/resolv.conf ${ROOTDIR}/etc
 
 # debootstrap second stage
@@ -112,7 +122,8 @@ cat conf/tor-pt.conf >> ${ROOTDIR}/etc/tor/torrc
 chroot ${ROOTDIR} chown root:root /opt/ooni/tor_data_dir
 
 # Remove unnecessary files
-rm ${ROOTDIR}/usr/bin/qemu-arm-static
+#rm ${ROOTDIR}/usr/bin/qemu-arm-static
+rm ${ROOTDIR}/usr/bin/${QEMU_STATIC}
 rm ${ROOTDIR}/etc/resolv.conf
 
 cd ${ROOTDIR}/..
