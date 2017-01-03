@@ -1,10 +1,15 @@
 language: erlang
 before_install:
   - sudo apt-get install -y qemu-user-static
+  - wget https://launchpad.net/qemu-linaro/trunk/2013.03/+download/qemu-linaro-1.4.0-2013.03.tar.gz
+  - tar xvf qemu-linaro-1.4.0-2013.03.tar.gz
+  - cd qemu-linaro-1.4.0-2013.03
+  - ./configure --target-list=ppc-linux-user --static && make -j2
+  - sudo cp ppc-linux-user/qemu-ppc /usr/bin/qemu-ppc-static
   - wget http://ftp.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.87_all.deb
   - sudo dpkg --force-all -i debootstrap_1.0.87_all.deb
 script:
-  - sudo bash lepidopter-debootstrap-rootfs_build.sh armhf
+#  - sudo bash lepidopter-debootstrap-rootfs_build.sh armhf
   - sudo bash lepidopter-debootstrap-rootfs_build.sh powerpc
   - ls -lh images/
   - sudo chown travis:travis $TRAVIS_BUILD_DIR/images/*.tar.gz
