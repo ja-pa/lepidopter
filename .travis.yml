@@ -6,6 +6,7 @@ before_install:
   - cd qemu-linaro-1.4.0-2013.03
   - ./configure --target-list=ppc-linux-user --static && make -j2
   - sudo cp ppc-linux-user/qemu-ppc /usr/bin/qemu-ppc-static
+  - cd ..
   - wget http://ftp.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.87_all.deb
   - sudo dpkg --force-all -i debootstrap_1.0.87_all.deb
 script:
